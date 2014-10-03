@@ -1,7 +1,7 @@
 -- (c) 2013 Flexiant Ltd
 -- Released under the Apache 2.0 Licence - see LICENCE for details
 
-function shutdown_alert(p)
+function auto_email_alert(p)
 	if(p == nil) then
 		return {
 			ref = "shutdown_alert",
@@ -17,7 +17,7 @@ function shutdown_alert(p)
 
 if(p.input:getJobType() == new("JobType","SHUTDOWN_SERVER")) then 
 	local customerUUID = p.input:getCustomerUUID()
-	customerCheck = checkCustomerKey(customerUUID, "SIGNUP_LOGIN_EMAIL")
+	customerCheck = checkCustomerKey(customerUUID, "EMAIL_RECP")
 		if (customerCheck.success) then
 		print("========== ALERT SERVER SHUTDOWN ==========")
 				local beMail = getBEMail(p.beUUID)
@@ -46,7 +46,7 @@ function getServerList()
 	local searchFilter = new("SearchFilter")
 	local filterCondition1 = new("FilterCondition")
 	filterCondition1:setField('resourcekey.name')
-	filterCondition1:setValue({'LIVE_SERVER'})
+	filterCondition1:setValue({'ALERT_SERVER'})
 	filterCondition1:setCondition(new("Condition","IS_EQUAL_TO"))
 	searchFilter:addCondition(filterCondition1)
 	local servers = adminAPI:listResources(searchFilter,nil,new("ResourceType","SERVER"))
@@ -61,7 +61,7 @@ end
 
 function checkServer(server)
 	for i = 0, server:getResourceKey():size() - server:getResourceKey():size()+1, 1 do
-		if(server:getResourceKey():get(i):getName() == 'LIVE_SERVER') then
+		if(server:getResourceKey():get(i):getName() == 'ALERT_SERVER') then
 			print('Sending  email to : ' .. customerCheck.keyValue)
 				sendMail(customerCheck.keyValue, beMail, message)
 		end
@@ -139,6 +139,6 @@ end
 
 function register()
 	return {
-	"shutdown_alert"
+	"auto_email_alert"
 	}
 end

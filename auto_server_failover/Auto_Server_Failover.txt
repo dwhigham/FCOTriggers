@@ -1,0 +1,20 @@
+Auto_Server_Failover
+ 
+Do you want to ensure your services are back up and running asap following an issue with your VM?
+This plugin automatically starts a shutdown backup server when a “Live_Server” is shutdown, with no manual intervention required and also switches ‘tags’ to show which is now live and which is now backup or in need of maintenance.
+ 
+Use Cases/Scenarios
+ 
+Enables a backup server to start automatically, in the event of an issue with the primary server.
+Allows for quick automated  start-up of existing servers.
+Tags server for easy identification to resolve issue at a later date.
+Switches tags so the backup server becomes tagged as ‘live’ and vice-versa.
+ 
+To Activate the Plugin
+ 
+Download from link above (right click and select save file)
+Install via the Admin Control Panel of your Flexiant Install, instructions for this are available online.
+You will need to add the following information to each live server and backup server
+Key Type                    Resource        Key Name       Value
+Customer Key                Server          LIVE_SERVER     1
+Customer Key                Server          BACKUP_SERVER   1

@@ -1,0 +1,19 @@
+Auto_email_alert
+ 
+Want to be notified if a server is shutdown.
+This plugin automatically emails a set email address in the event of a server being shutdown.
+ 
+Use Cases/Scenarios
+ 
+Email notifications in the event of server shutdown.
+Timestamp on shutdown.
+Aids quick maintenance response in the event of an issue.
+ 
+To Activate the Plugin
+ 
+Download from link above (right click and select save file)
+Install via the Admin Control Panel of your Flexiant Install, instructions for this are available from here.
+You will need to add the following information to the billing entity and to the server you wish to be alerted from.
+Key Type                    Resource       Key Name       Value
+Billing Entity Key      	Customer       EMAIL_RECP  	“RECPIENT EMAIL ADDRESS”
+Customer Key				Server			ALERT_SERVER  1
